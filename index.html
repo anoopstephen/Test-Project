@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Requirement Changes Notebook</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Project notebook</p>
+          <h1>Requirement Changes Tracker</h1>
+        </div>
+      </header>
+
+      <main class="notebook">
+        <aside class="page-tabs">
+          <button class="page-tab active" type="button" data-page="overview">
+            Overview
+          </button>
+          <div id="date-tabs"></div>
+        </aside>
+
+        <section class="page-view">
+          <article class="page active" data-page="overview">
+            <div class="page-header">
+              <h2>Total requirement change summary</h2>
+              <p>Live totals across all saved requirement change pages.</p>
+            </div>
+
+            <div class="summary-grid">
+              <section class="summary-card">
+                <span class="summary-label">Total changes added</span>
+                <strong id="total-count">0</strong>
+              </section>
+              <section class="summary-card">
+                <span class="summary-label">To Do</span>
+                <strong id="todo-count">0</strong>
+              </section>
+              <section class="summary-card">
+                <span class="summary-label">In Progress</span>
+                <strong id="in-progress-count">0</strong>
+              </section>
+              <section class="summary-card">
+                <span class="summary-label">Completed</span>
+                <strong id="completed-count">0</strong>
+              </section>
+            </div>
+          </article>
+
+          <div id="pages"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
