@@ -18,8 +18,7 @@ updateSummary();
 
 function buildNotebookPages() {
   const today = startOfDay(new Date());
-  const endDate = new Date(today);
-  endDate.setMonth(endDate.getMonth() + 2);
+  const endDate = addMonthsClamped(today, 2);
 
   for (let current = new Date(today); current <= endDate; current.setDate(current.getDate() + 1)) {
     const date = new Date(current);
@@ -56,10 +55,11 @@ function createPage(pageId, date) {
 
   const header = document.createElement("div");
   header.className = "page-header";
-  header.innerHTML = `
-    <h2>${formatDisplayDate(date)}</h2>
-    <p>Capture requirement changes, action items, and their current status.</p>
-  `;
+  const title = document.createElement("h2");
+  title.textContent = formatDisplayDate(date);
+  const description = document.createElement("p");
+  description.textContent = "Capture requirement changes, action items, and their current status.";
+  header.append(title, description);
 
   const sectionGrid = document.createElement("div");
   sectionGrid.className = "section-grid";
@@ -204,4 +204,13 @@ function startOfDay(date) {
   const result = new Date(date);
   result.setHours(0, 0, 0, 0);
   return result;
+}
+
+function addMonthsClamped(date, monthsToAdd) {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  const targetMonth = month + monthsToAdd;
+  const lastDayOfTargetMonth = new Date(year, targetMonth + 1, 0).getDate();
+  return new Date(year, targetMonth, Math.min(day, lastDayOfTargetMonth));
 }
